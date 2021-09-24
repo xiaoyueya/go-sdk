@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	rand2 "github.com/tendermint/tendermint/libs/rand"
 	"math/rand"
 	"os/exec"
 	"strconv"
@@ -13,16 +14,15 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tendermint/tendermint/libs/common"
 	tmquery "github.com/tendermint/tendermint/libs/pubsub/query"
 	"github.com/tendermint/tendermint/types"
 
-	"github.com/binance-chain/go-sdk/client/rpc"
-	"github.com/binance-chain/go-sdk/client/transaction"
-	ctypes "github.com/binance-chain/go-sdk/common/types"
-	"github.com/binance-chain/go-sdk/keys"
-	"github.com/binance-chain/go-sdk/types/msg"
-	"github.com/binance-chain/go-sdk/types/tx"
+	"github.com/xiaoyueya/go-sdk/client/rpc"
+	"github.com/xiaoyueya/go-sdk/client/transaction"
+	ctypes "github.com/xiaoyueya/go-sdk/common/types"
+	"github.com/xiaoyueya/go-sdk/keys"
+	"github.com/xiaoyueya/go-sdk/types/msg"
+	"github.com/xiaoyueya/go-sdk/types/tx"
 )
 
 var (
@@ -570,9 +570,9 @@ func TestSubmitCSCProposal(t *testing.T) {
 	c.SetKeyManager(keyManager)
 
 	cscPrams := msg.CSCParamChange{
-		Key:    common.RandStr(common.RandIntn(255) + 1),
-		Value:  hex.EncodeToString(common.RandBytes(common.RandIntn(255) + 1)),
-		Target: hex.EncodeToString(common.RandBytes(20)),
+		Key:    rand2.Str(rand2.Intn(255) + 1),
+		Value:  hex.EncodeToString(rand2.Bytes(rand2.Intn(255) + 1)),
+		Target: hex.EncodeToString(rand2.Bytes(20)),
 	}
 
 	res, err := c.SideChainSubmitCSCParamsProposal("title", cscPrams, ctypes.Coins{{msg.NativeToken, 5e8}}, 5*time.Second, "rialto", rpc.Sync)

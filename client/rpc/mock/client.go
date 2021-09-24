@@ -1,16 +1,16 @@
 package mock
 
 import (
-	"github.com/binance-chain/go-sdk/client/rpc"
-	"reflect"
-
-	cmn "github.com/tendermint/tendermint/libs/common"
+	"github.com/tendermint/tendermint/libs/bytes"
 	"github.com/tendermint/tendermint/libs/log"
+	cmn "github.com/tendermint/tendermint/libs/service"
 	"github.com/tendermint/tendermint/rpc/client"
 	"github.com/tendermint/tendermint/rpc/core"
 	ctypes "github.com/tendermint/tendermint/rpc/core/types"
 	rpctypes "github.com/tendermint/tendermint/rpc/lib/types"
 	"github.com/tendermint/tendermint/types"
+	"github.com/xiaoyueya/go-sdk/client/rpc"
+	"reflect"
 )
 
 // Client wraps arbitrary implementations of the various interfaces.
@@ -75,11 +75,11 @@ func (c Client) ABCIInfo() (*ctypes.ResultABCIInfo, error) {
 	return core.ABCIInfo(&rpctypes.Context{})
 }
 
-func (c Client) ABCIQuery(path string, data cmn.HexBytes) (*ctypes.ResultABCIQuery, error) {
+func (c Client) ABCIQuery(path string, data bytes.HexBytes) (*ctypes.ResultABCIQuery, error) {
 	return c.ABCIQueryWithOptions(path, data, client.DefaultABCIQueryOptions)
 }
 
-func (c Client) ABCIQueryWithOptions(path string, data cmn.HexBytes, opts client.ABCIQueryOptions) (*ctypes.ResultABCIQuery, error) {
+func (c Client) ABCIQueryWithOptions(path string, data bytes.HexBytes, opts client.ABCIQueryOptions) (*ctypes.ResultABCIQuery, error) {
 	return core.ABCIQuery(&rpctypes.Context{}, path, data, opts.Height, opts.Prove)
 }
 
@@ -128,7 +128,7 @@ func (c Client) Commit(height *int64) (*ctypes.ResultCommit, error) {
 }
 
 func (c Client) Validators(height *int64) (*ctypes.ResultValidators, error) {
-	return core.Validators(&rpctypes.Context{}, height)
+	return core.Validators(&rpctypes.Context{}, height, 0, 10)
 }
 
 func (c Client) SetLogger(log.Logger) {

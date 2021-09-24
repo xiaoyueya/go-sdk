@@ -7,14 +7,14 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/binance-chain/go-sdk/common"
-	"github.com/binance-chain/go-sdk/common/types"
-	sdk "github.com/binance-chain/go-sdk/common/types"
-	"github.com/binance-chain/go-sdk/keys"
-	gtypes "github.com/binance-chain/go-sdk/types"
-	"github.com/binance-chain/go-sdk/types/msg"
-	"github.com/binance-chain/go-sdk/types/tx"
 	core_types "github.com/tendermint/tendermint/rpc/core/types"
+	"github.com/xiaoyueya/go-sdk/common"
+	"github.com/xiaoyueya/go-sdk/common/types"
+	sdk "github.com/xiaoyueya/go-sdk/common/types"
+	"github.com/xiaoyueya/go-sdk/keys"
+	gtypes "github.com/xiaoyueya/go-sdk/types"
+	"github.com/xiaoyueya/go-sdk/types/msg"
+	"github.com/xiaoyueya/go-sdk/types/tx"
 )
 
 type SyncType int

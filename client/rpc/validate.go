@@ -3,10 +3,9 @@ package rpc
 import (
 	"crypto/sha256"
 	"fmt"
-	"strings"
-
-	"github.com/tendermint/tendermint/libs/common"
+	"github.com/tendermint/tendermint/libs/bytes"
 	"github.com/tendermint/tendermint/types"
+	"strings"
 )
 
 const (
@@ -38,7 +37,7 @@ var (
 	PairFormatError                   = fmt.Errorf("the pair should in format 'symbol1_symbol2'")
 	DepthLevelExceedRangeError        = fmt.Errorf("the level is out of range [%d, %d]", 0, maxDepthLevel)
 	KeyMissingError                   = fmt.Errorf("keymanager is missing, use SetKeyManager to set key")
-	EmptyResultError				  = fmt.Errorf("Empty result ")
+	EmptyResultError                  = fmt.Errorf("Empty result ")
 )
 
 func ValidateABCIPath(path string) error {
@@ -48,7 +47,7 @@ func ValidateABCIPath(path string) error {
 	return nil
 }
 
-func ValidateABCIData(data common.HexBytes) error {
+func ValidateABCIData(data bytes.HexBytes) error {
 	if len(data) > maxABCIDataLength {
 		return ExceedABCIPathLengthError
 	}

@@ -1,9 +1,8 @@
 package types
 
 import (
+	"github.com/tendermint/tendermint/libs/bytes"
 	"time"
-
-	"github.com/tendermint/tendermint/libs/common"
 )
 
 // Account definition
@@ -21,9 +20,9 @@ type NodeInfo struct {
 
 	// Check compatibility.
 	// Channels are HexBytes so easier to read as JSON
-	Network  string          `json:"network"`  // network/chain ID
-	Version  string          `json:"version"`  // major.minor.revision
-	Channels common.HexBytes `json:"channels"` // channels this node knows about
+	Network  string         `json:"network"`  // network/chain ID
+	Version  string         `json:"version"`  // major.minor.revision
+	Channels bytes.HexBytes `json:"channels"` // channels this node knows about
 
 	// ASCIIText fields
 	Moniker string        `json:"moniker"` // arbitrary moniker
@@ -31,16 +30,16 @@ type NodeInfo struct {
 }
 
 type ValidatorInfo struct {
-	Address     common.HexBytes `json:"address"`
-	PubKey      []uint8         `json:"pub_key"`
-	VotingPower int64           `json:"voting_power"`
+	Address     bytes.HexBytes `json:"address"`
+	PubKey      []uint8        `json:"pub_key"`
+	VotingPower int64          `json:"voting_power"`
 }
 type SyncInfo struct {
-	LatestBlockHash   common.HexBytes `json:"latest_block_hash"`
-	LatestAppHash     common.HexBytes `json:"latest_app_hash"`
-	LatestBlockHeight int64           `json:"latest_block_height"`
-	LatestBlockTime   time.Time       `json:"latest_block_time"`
-	CatchingUp        bool            `json:"catching_up"`
+	LatestBlockHash   bytes.HexBytes `json:"latest_block_hash"`
+	LatestAppHash     bytes.HexBytes `json:"latest_app_hash"`
+	LatestBlockHeight int64          `json:"latest_block_height"`
+	LatestBlockTime   time.Time      `json:"latest_block_time"`
+	CatchingUp        bool           `json:"catching_up"`
 }
 
 type NodeInfoOther struct {
